@@ -1,0 +1,45 @@
+package hello;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import com.google.gson.Gson;
+
+class Simpson implements Comparable<Simpson> {
+    String name;
+
+    Simpson(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public int compareTo(Simpson simpson) {
+        return this.name.compareTo(simpson.name);
+    }
+
+	@Override
+	public String toString() {
+		return "Simpson [name=" + name + "]";
+	}
+    
+}
+
+public class SimpsonSorting {
+
+     public static void main(String... sortingWithList) {
+        List<Simpson> simpsons = new ArrayList<>();
+        simpsons.add(new Simpson("Homer1"));
+        simpsons.add(new Simpson("Marge"));
+        simpsons.add(new Simpson("Bart"));
+        simpsons.add(new Simpson("Homer2"));
+        Gson gson=new Gson();
+        Collections.sort(simpsons);
+        simpsons.stream().map(s -> s.name).forEach(System.out::print);
+        gson.toJson(simpsons);
+        Collections.reverse(simpsons);
+        simpsons.stream().forEach(System.out::print);
+        
+    }
+
+}
